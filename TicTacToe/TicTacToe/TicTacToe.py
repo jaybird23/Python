@@ -74,9 +74,8 @@ def player_selection():
     if not player_selection():
         player_selection()
 
-
 ############################################
-# Prompts a player to move and records if valid
+# Prompts a player to make valid move
 ############################################
 def player_move ():
     '''
@@ -104,9 +103,9 @@ def player_move ():
         else:  
             # Valid remove, so record it
             if player_next == 1:
-                board[int(response)-1 ] = 'X'
+                board[int(response)-1 ] = player1
             else:
-                board[int(response)-1] = 'O'
+                board[int(response)-1] = player2
 
             # iterate move number and set to valid move
             move_num +=1
@@ -115,7 +114,6 @@ def player_move ():
             # Redraw board
             os.system('cls')
             draw_board()
-
 
 ############################################
 # Determines who is next to play
@@ -183,11 +181,13 @@ def game_is_won():
 ############################################
 # Play TIC TAC TOE!
 ############################################
-
 def play_game():
     global move_num
     global board
     global drawing_board
+    global player1
+    global player2
+    global player_next
 
     playing = True
 
@@ -222,6 +222,9 @@ def play_game():
 
         drawing_board = None
         board = [1,2,3,4,5,6,7,8,9]
+        player1 = None
+        player2 = None
+        player_next = None
 
 
 play_game()
