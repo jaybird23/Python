@@ -8,7 +8,8 @@ player2 = None # String value:  either 'X' or 'O'
 player1_first = None # Boolean value:  True is Player 1 plays first, False if otherwise.
 player_next = None # String value:  next player to move
 move_num = None # Integer value:  tracks total number of moves in game.
-MAX_MOVES = 9 # Constant:  total moves allowed in single game.  
+MAX_MOVES = 9 # Constant:  total moves allowed in single game.
+game_won = None # A boolean:  a flag to determine if the game has been won. 
 
 ############################################
 # Draws the board
@@ -146,6 +147,7 @@ def game_is_won():
     '''
     Determine if a player had won the game.
     '''
+    global game_won
     # If minimum number of moves for a win
     # hasn't been reached, game is not won
     if move_num < 5:
@@ -153,28 +155,36 @@ def game_is_won():
 
     # Row 1 Victory
     if (board[0] == board [1] == board[2]):
-        return True
+        game_won = True
+        return game_won
     # Row 2 Victory
     elif board[3] == board[4] == board[5]:
-        return True
+        game_won = True
+        return game_won
     # Row 3 Victory
     elif board[6] == board[7] == board[8]:
-        return True
+        game_won = True
+        return game_won
     # Column 1 Victory
     elif board[0] == board[3] == board[6]:
-        return True
+        game_won = True
+        return game_won
     # Column 2 Victory
     elif board[1] == board[4] == board [7]:
-        return True
+        game_won = True
+        return game_won
     # Column 3 Victory
     elif board[2] == board[5] == board[8]:
-        return True
+         game_won = True
+         return game_won
     # Diagonal 1 Victory
     elif board[0] == board[4] == board[8]:
-        return True
+        game_won = True
+        return game_won
     #Diagonal 2 Victory
     elif board[2] == board[4] == board[6]:
-        return True
+        game_won = True
+        return game_won
     else:
         return False
 
@@ -188,6 +198,7 @@ def play_game():
     global player1
     global player2
     global player_next
+    global game_won
 
     playing = True
 
@@ -202,12 +213,12 @@ def play_game():
         draw_board()
 
         # Game is played until game is won or board is filled.
-        while not game_is_won() and move_num <= MAX_MOVES:
+        while not game_is_won() and move_num < MAX_MOVES:
             player_move()
 
         # Finishes game
         print '\n'
-        if move_num != MAX_MOVES:
+        if game_won:
             print 'GAME WON BY PLAYER %s!!\n' %(player_next)
         else:
             print 'GAME IS A DRAW!!\n'
@@ -225,6 +236,7 @@ def play_game():
         player1 = None
         player2 = None
         player_next = None
+        game_won = False
 
 
 play_game()
