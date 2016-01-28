@@ -26,6 +26,11 @@ if __name__ == '__main__':
     alpha = 0.01 # learning rate
     theta = gradient_descent_2(alpha, x, y, 1000)
 
+    # check with scipy linear regression
+    # slope, intercept, r_value, p_value, slope_std_error = stats.linregress(x[:,0], y)
+    # print ('intercept = %s slope = %s') %(intercept, slope) 
+    print 'Theta = %s' % (theta)
+
     # plot
     for i in range(x.shape[1]):
         y_predict = theta[0] + theta[1]*x 
