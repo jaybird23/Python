@@ -57,7 +57,7 @@ if __name__ == '__main__':
     ep = 0.01 # convergence criteria
 
     # call gradient descent, and get intercept (=theta0) and slope (=theta1)
-    theta0, theta1 = gradient_descent(alpha, x, y, ep, max_iter=1000)
+    theta0, theta1 = gradient_descent(alpha, x, y, ep, max_iter=10000)
     print ('theta0 = %s theta1 = %s') %(theta0, theta1)
 
     # check with scipy linear regression
