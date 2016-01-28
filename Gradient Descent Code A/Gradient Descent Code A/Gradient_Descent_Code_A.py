@@ -61,7 +61,8 @@ if __name__ == '__main__':
     print ('theta0 = %s theta1 = %s') %(theta0, theta1)
 
     # check with scipy linear regression
-    
+    slope, intercept, r_value, p_value, slope_std_error = stats.linregress(x[:,0], y)
+    print ('intercept = %s slope = %s') %(intercept, slope) 
 
     # plot
     for i in range(x.shape[0]):
